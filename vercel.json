@@ -17,5 +17,9 @@
       ],
       "dest": "api/analyze_image.py"
     }
-  ]
+  ],
+  "env": {
+    "VERCEL_USE_LEGACY_IMAGE": "1",
+    "NODE_VERSION": "18.x"
+  }
 }
