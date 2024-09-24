@@ -19,7 +19,7 @@ def hsv_mask():
         hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
         # Define Hue range (32 to 85)
-        lower_bound = np.array([32, 50, 50])
+        lower_bound = np.array([32, 0, 0])
         upper_bound = np.array([85, 255, 255])
 
         # Create a mask based on the hue range
