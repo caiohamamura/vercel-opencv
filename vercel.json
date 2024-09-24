@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/analyze-image.py",
+      "src": "app.py",
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.9"
@@ -11,15 +11,12 @@
   ],
   "routes": [
     {
-      "src": "api/analyze-image",
-      "methods": [
-        "POST"
-      ],
-      "dest": "api/analyze_image.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.html"
+      "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "app.py"
+        }
+      ]
     }
   ]
 }

@@ -1,10 +1,13 @@
 from io import BytesIO
 import numpy as np
 import requests
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, StaticFiles
 import os
 
 app = FastAPI()
+
+app.mount("/", StaticFiles(directory="public"), name="public")
+
 
 # Roboflow configuration
 ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY")
