@@ -16,6 +16,10 @@
         "POST"
       ],
       "dest": "api/analyze_image.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html"
     }
   ]
 }
