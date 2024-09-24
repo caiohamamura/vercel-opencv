@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Image Analysis Service</h1>
+<form id="imageForm">
+    <label for="imageInput">Upload Image:</label>
+    <input type="file" id="imageInput" name="file" accept="image/*" required>
+    <button type="submit">Analyze</button>
+</form>
+
+<div id="output"></div>
+
+<script>
+    document.getElementById('imageForm').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        const formData = new FormData();
+        const fileInput = document.getElementById('imageInput');
+        formData.append('file', fileInput.files[0]);
+
+        try {
+            const response = await fetch('/analyze-image', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            document.getElementById('output').innerText = `Matching Percentage: ${result.matching_percentage.toFixed(2)}%`;
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('output').innerText = 'Error analyzing the image. Please try again.';
+        }
+    });
+</script>
+
+</body>
+</html>
