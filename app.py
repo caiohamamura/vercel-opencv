@@ -1,6 +1,7 @@
 from io import BytesIO
 import numpy as np
 import requests
+import cv2
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
@@ -21,7 +22,7 @@ ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY")
 ROBOFLOW_MODEL_URL = "https://detect.roboflow.com/fenologia-tcc/3"
 
 @app.route("/analyze-image", methods=["POST"])
-async def analyze_image():
+def analyze_image():
     # Get image from request (assuming image is sent as multipart/form-data)
     if 'file' not in request.files:
         return jsonify({"error": "No file part"}), 400
@@ -45,8 +46,7 @@ async def analyze_image():
     prediction = response_json["predictions"][0]
 
     # Load the image using opencv
-    image.seek(0)
-    file_bytes = np.asarray(bytearray(image.read()), dtype=np.uint8)
+    file_bytes = np.asarray(bytearray(image), dtype=np.uint8)
     img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
     # Create the mask
