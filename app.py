@@ -1,7 +1,8 @@
 from io import BytesIO
 import numpy as np
 import requests
-from fastapi import FastAPI, Request, StaticFiles
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 import os
 
 app = FastAPI()
