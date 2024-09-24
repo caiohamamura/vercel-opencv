@@ -13,4 +13,4 @@ numpy = "1.24.3"
 
 
 [requires]
-python_version = "3.12"
+python_version = "3.9"
