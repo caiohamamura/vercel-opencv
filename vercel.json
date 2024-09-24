@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/analyze_image.py",
+      "src": "api/analyze-image.py",
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.9"
