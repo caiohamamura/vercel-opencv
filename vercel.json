@@ -14,6 +14,11 @@
           "src": "/(.*)",
           "methods": ["POST", "GET"],
           "dest": "app.py"
+        },
+        {
+          "src": "/analyze-image",
+          "methods": ["POST", "GET"],
+          "dest": "app.py"
         }
   ]
 }
