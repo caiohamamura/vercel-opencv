@@ -2,14 +2,18 @@ from io import BytesIO
 import numpy as np
 import requests
 import cv2
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder='public',
+    static_url_path='/'
+)
+
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.static_folder = 'public'
 
 
 origins = [
@@ -20,6 +24,10 @@ origins = [
 # Roboflow configuration
 ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY")
 ROBOFLOW_MODEL_URL = "https://detect.roboflow.com/fenologia-tcc/3"
+
+@app.route('/')
+def index():
+    return send_from_directory('public', 'index.html')
 
 @app.route("/analyze-image", methods=["POST"])
 def analyze_image():
