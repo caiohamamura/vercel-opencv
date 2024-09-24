@@ -12,6 +12,7 @@
   "routes": [
         {
           "src": "/(.*)",
+          "methods": ["POST", "GET"],
           "dest": "app.py"
         }
   ]

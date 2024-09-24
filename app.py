@@ -7,7 +7,7 @@ import os
 
 app = FastAPI()
 
-app.mount("/", StaticFiles(directory="public"), name="public")
+app.mount("/", StaticFiles(directory="public", html = True), name="public")
 
 
 # Roboflow configuration
