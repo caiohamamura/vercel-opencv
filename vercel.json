@@ -1,17 +1,21 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/hsv_mask.py",
-        "use": "@vercel/python",
-        "config": { "runtime": "python3.9" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/analyze_image.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/hsv_mask",
-        "dest": "/api/hsv_mask.py"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/analyze-image",
+      "methods": [
+        "POST"
+      ],
+      "dest": "api/analyze_image.py"
+    }
+  ]
+}
