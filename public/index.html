@@ -17,6 +17,19 @@
             border: 1px solid #ccc;
             background: #fff;
         }
+        .row {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+        }
+        .col {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+        img {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +42,16 @@
 </form>
 
 <div id="output"></div>
+<div class="row">
+    <div class="col">
+        <h2>Crown</h2>
+        <img id="crown-img" src="" alt="Crown Image">
+    </div>
+    <div class="col">
+        <h2>Leaf Mask</h2>
+        <img id="leaf-img" src="" alt="Leaf Image">
+    </div>
+</div>
 
 <script>
     document.getElementById('imageForm').addEventListener('submit', async (event) => {
@@ -50,6 +73,8 @@
 
             const result = await response.json();
             document.getElementById('output').innerText = `Matching Percentage: ${result.matching_percentage.toFixed(2)}%`;
+            document.getElementById('crown-img')?.setAttribute("src", result.crown_image);
+            document.getElementById('leaf-img')?.setAttribute("src", result.leaf_image);
         } catch (error) {
             console.error('Error:', error);
             document.getElementById('output').innerText = 'Error analyzing the image. Please try again.';
